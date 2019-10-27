@@ -1,0 +1,72 @@
+import groovy.sql.Sql
+
+buildscript {
+    repositories {
+        mavenCentral()
+        dependencies {
+            classpath 'org.postgresql:postgresql:42.2.8'
+            classpath 'org.codehaus.groovy:groovy-sql:2.5.8'
+        }
+    }
+}
+
+configurations {
+    driver
+}
+
+dependencies {
+    driver 'org.postgresql:postgresql:42.2.8'
+}
+
+
+task initDB() {
+    doFirst{
+        URLClassLoader loader = GroovyObject.class.classLoader as URLClassLoader
+        configurations.driver.each {
+            File file -> loader.addURL(file.toURI().toURL())
+        }
+        Properties props = new Properties()
+        file("database.properties").withInputStream { props.load(it) }
+        Class driver = loader.loadClass(props.getProperty("db.driver"))
+        Sql sql
+        try {
+            println 'Creating connection to root database'
+            sql = Sql.newInstance(
+                    props.getProperty("db.url") + "/postgres",
+                    props.getProperty("db.admin"),
+                    props.getProperty("db.admin.password"),
+                    props.getProperty("db.driver")
+            )
+
+            println 'Creating custom database: ' + props.getProperty("db.name")
+            fileTree(dir: 'sql_scripts', include: "database_init.sql").each {
+                sql.execute(it.text)
+            }
+            sql.close()
+
+            println 'Creating connection to custom database: ' + props.getProperty("db.name")
+            sql = Sql.newInstance(
+                    props.getProperty("db.url") + "/" + props.getProperty("db.name"),
+                    props.getProperty("db.admin"),
+                    props.getProperty("db.admin.password"),
+                    props.getProperty("db.driver")
+            )
+
+            println 'Creating tables'
+            fileTree(dir: 'src/main/resources/sql_scripts', include: "db_schema.sql").each {
+                sql.execute(it.text)
+            }
+
+            println 'Initializing data'
+            fileTree(dir: 'src/main/resources/sql_scripts/data', include: "**.sql").each {
+                println '->\tExecuting script ' + it.name
+                sql.execute(it.text)
+            }
+            sql.close()
+        } catch (Exception e) {
+            e.printStackTrace()
+        } finally {
+            sql.close()
+        }
+    }
+}
