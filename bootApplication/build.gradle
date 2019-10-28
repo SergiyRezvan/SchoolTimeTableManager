@@ -5,6 +5,7 @@ group = 'ua.kharkiv.riezvan'
 version = '1.0-SNAPSHOT'
 
 dependencies {
+    implementation project(':schoolManager')
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'

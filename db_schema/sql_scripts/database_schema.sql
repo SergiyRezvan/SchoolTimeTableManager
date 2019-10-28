@@ -13,6 +13,7 @@ CREATE TABLE schools (
 	description text NULL,
 	phone varchar(20) NULL,
 	address varchar(100) NULL,
+	email varchar(50) NULL,
 	director varchar(100) NULL,
 	website varchar(150) NULL,
 	CONSTRAINT schools_pk PRIMARY KEY (id)
