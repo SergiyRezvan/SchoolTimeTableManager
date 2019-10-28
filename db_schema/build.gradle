@@ -53,12 +53,12 @@ task initDB() {
             )
 
             println 'Creating tables'
-            fileTree(dir: 'src/main/resources/sql_scripts', include: "db_schema.sql").each {
+            fileTree(dir: 'sql_scripts', include: "db_schema.sql").each {
                 sql.execute(it.text)
             }
 
             println 'Initializing data'
-            fileTree(dir: 'src/main/resources/sql_scripts/data', include: "**.sql").each {
+            fileTree(dir: 'sql_scripts/data', include: "**.sql").each {
                 println '->\tExecuting script ' + it.name
                 sql.execute(it.text)
             }
