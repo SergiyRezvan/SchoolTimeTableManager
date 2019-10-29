@@ -6,7 +6,7 @@ import lombok.Getter;
 import org.springframework.hateoas.ResourceSupport;
 
 @Getter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Builder
 public class SchoolModelRS extends ResourceSupport {
 
