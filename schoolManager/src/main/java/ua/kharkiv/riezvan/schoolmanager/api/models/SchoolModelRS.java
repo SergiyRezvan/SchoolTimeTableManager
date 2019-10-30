@@ -11,7 +11,7 @@ import org.springframework.hateoas.ResourceSupport;
 public class SchoolModelRS extends ResourceSupport {
 
     @EqualsAndHashCode.Include
-    private Long id;
+    private Long schoolId;
 
     private String name;
 

@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @RestController
 @RequestMapping("/schoolManager")
@@ -25,31 +24,43 @@ public class SchoolManagerController {
 
     @PostMapping
     public HttpEntity<SchoolModelRS> createNewSchool(@RequestBody @Valid SchoolModelRQ request) {
-        SchoolModelRS schoolModelRS = schoolManagerService.save(request);
-        ControllerLinkBuilder
-                .linkTo(methodOn(SchoolManagerController.class)
-                        .getSchool(schoolModelRS.getId())).withSelfRel();
-        return new ResponseEntity<>(schoolModelRS, HttpStatus.CREATED);
+        SchoolModelRS schoolResponse = schoolManagerService.save(request);
+        addSelfRel(schoolResponse);
+        return new ResponseEntity<>(schoolResponse, HttpStatus.CREATED);
     }
 
     @GetMapping
     public HttpEntity<List<SchoolModelRS>> getAllSchools() {
-        return null;
+        List<SchoolModelRS> allSchools = schoolManagerService.getAllSchools();
+        allSchools.forEach(schoolResponse -> ControllerLinkBuilder
+                .linkTo(methodOn(SchoolManagerController.class)
+                        .getSchool(schoolResponse.getSchoolId())).withSelfRel());
+        return new ResponseEntity<>(allSchools, HttpStatus.OK);
     }
 
     @GetMapping("/{schoolId}")
     public HttpEntity<SchoolModelRS> getSchool(@PathVariable("schoolId") Long schoolId) {
+        SchoolModelRS schoolResponse = schoolManagerService.getSchool(schoolId);
+        addSelfRel(schoolResponse);
         return null;
     }
 
-    @PatchMapping
-    public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelRQ request) {
-        return null;
+    @PatchMapping("/{schoolId}")
+    public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelRQ request, @PathVariable("schoolId") Long schoolId ) {
+        SchoolModelRS schoolResponse = schoolManagerService.update(request, schoolId);
+        addSelfRel(schoolResponse);
+        return new ResponseEntity<>(schoolResponse, HttpStatus.OK);
+    }
+
+    private void addSelfRel(SchoolModelRS schoolResponse) {
+        ControllerLinkBuilder
+                .linkTo(methodOn(SchoolManagerController.class)
+                        .getSchool(schoolResponse.getSchoolId())).withSelfRel();
     }
 
     @DeleteMapping("/{schoolId}")
     public ResponseEntity deleteSchool(@PathVariable("schoolId") Long schoolId) {
-
+        schoolManagerService.delete(schoolId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

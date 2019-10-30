@@ -1,4 +1,4 @@
-package ua.kharkiv.riezvan.schoolmanager;
+package ua.kharkiv.riezvan.schoolmanager.util;
 
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
@@ -20,7 +20,7 @@ public class Converters {
 
     public static SchoolModelRS convertEntityToRs(SchoolEntity schoolEntity) {
         return SchoolModelRS.builder()
-                .id(schoolEntity.getId())
+                .schoolId(schoolEntity.getId())
                 .address(schoolEntity.getAddress())
                 .description(schoolEntity.getDescription())
                 .director(schoolEntity.getDirector())
