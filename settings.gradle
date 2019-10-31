@@ -7,4 +7,5 @@ rootProject.name = 'SchoolTimeTableManager'
 include 'db_schema'
 include 'bootApplication'
 include 'schoolManager'
+include 'scheduleManager'
 

@@ -2,7 +2,7 @@ package ua.kharkiv.riezvan.schoolmanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.kharkiv.riezvan.schoolmanager.util.Converters;
+import ua.kharkiv.riezvan.schoolmanager.converters.Converters;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
 import ua.kharkiv.riezvan.schoolmanager.db.models.SchoolEntity;

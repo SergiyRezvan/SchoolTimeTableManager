@@ -1,4 +1,4 @@
-package ua.kharkiv.riezvan.SchoolTimeTableManager.config;
+package ua.kharkiv.riezvan.schoolmanager.config;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;

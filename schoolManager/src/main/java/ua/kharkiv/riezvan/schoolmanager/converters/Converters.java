@@ -1,4 +1,4 @@
-package ua.kharkiv.riezvan.schoolmanager.util;
+package ua.kharkiv.riezvan.schoolmanager.converters;
 
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
