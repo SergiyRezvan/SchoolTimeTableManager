@@ -2,3 +2,4 @@ rootProject.name = 'SchoolTimeTableManagerApp'
 
 include 'schoolManager'
 include 'scheduleManager'
+include 'activitiesManager'
