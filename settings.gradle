@@ -9,4 +9,5 @@ include 'bootApplication'
 include 'schoolManager'
 include 'scheduleManager'
 include 'activitiesManager'
+include 'lessonManager'
 
