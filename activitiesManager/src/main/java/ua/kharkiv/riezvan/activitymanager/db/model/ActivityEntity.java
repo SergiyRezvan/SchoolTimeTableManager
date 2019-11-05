@@ -29,7 +29,6 @@ public class ActivityEntity {
     private LocalTime startFrom;
 
     @Column(name = "end_at", columnDefinition = "TIME")
-    @Temporal(TemporalType.TIME)
     private LocalTime endAt;
 
     @Enumerated(EnumType.STRING)

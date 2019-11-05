@@ -13,6 +13,10 @@ repositories {
 }
 
 dependencies {
+    implementation project(':schoolManager')
+    implementation project(':activitiesManager')
+    implementation project(':scheduleManager')
+
     compileOnly 'org.projectlombok:lombok:1.18.10'
     annotationProcessor 'org.projectlombok:lombok:1.18.10'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

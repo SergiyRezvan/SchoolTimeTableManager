@@ -29,7 +29,8 @@ public class Class {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "subject")
+    @OneToMany
+    @JoinColumn(name = "class_id")
     private List<Subject> subjectList;
 
     public Class() {}

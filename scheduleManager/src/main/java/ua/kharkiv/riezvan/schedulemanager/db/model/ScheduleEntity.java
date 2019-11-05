@@ -11,7 +11,7 @@ import java.util.Objects;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name = "schedule")
+@Table(name = "schedules")
 @FilterDef(name = "tenantFilter",
             parameters = @ParamDef(
                     name = "schoolId",
