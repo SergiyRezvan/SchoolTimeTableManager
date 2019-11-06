@@ -28,9 +28,11 @@ public class ScheduleEntity {
     private Long schoolId;
 
     @Column(name = "actual_from")
+    @Temporal(TemporalType.DATE)
     private Date actualFrom;
 
     @Column(name = "actual_to")
+    @Temporal(TemporalType.DATE)
     private Date actualTo;
 
     @Column(name = "is_exceptional")

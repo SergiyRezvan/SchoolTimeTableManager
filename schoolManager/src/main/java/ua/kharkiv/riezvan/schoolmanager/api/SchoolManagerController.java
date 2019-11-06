@@ -16,20 +16,20 @@ import java.util.List;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/schoolManager")
+@RequestMapping
 public class SchoolManagerController {
 
     @Autowired
     private SchoolManagerService schoolManagerService;
 
-    @PostMapping
+    @PostMapping("/schoolManager")
     public HttpEntity<SchoolModelRS> createNewSchool(@RequestBody @Valid SchoolModelRQ request) {
         SchoolModelRS schoolResponse = schoolManagerService.save(request);
         addSelfRel(schoolResponse);
         return new ResponseEntity<>(schoolResponse, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public HttpEntity<List<SchoolModelRS>> getAllSchools() {
         List<SchoolModelRS> allSchools = schoolManagerService.getAllSchools();
         allSchools.forEach(schoolResponse -> ControllerLinkBuilder
@@ -38,14 +38,14 @@ public class SchoolManagerController {
         return new ResponseEntity<>(allSchools, HttpStatus.OK);
     }
 
-    @GetMapping("/{schoolId}")
+    @GetMapping("/schoolManager/{schoolId}")
     public HttpEntity<SchoolModelRS> getSchool(@PathVariable("schoolId") Long schoolId) {
         SchoolModelRS schoolResponse = schoolManagerService.getSchool(schoolId);
         addSelfRel(schoolResponse);
         return null;
     }
 
-    @PatchMapping("/{schoolId}")
+    @PatchMapping("/schoolManager/{schoolId}")
     public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelRQ request, @PathVariable("schoolId") Long schoolId ) {
         SchoolModelRS schoolResponse = schoolManagerService.update(request, schoolId);
         addSelfRel(schoolResponse);
@@ -58,7 +58,7 @@ public class SchoolManagerController {
                         .getSchool(schoolResponse.getSchoolId())).withSelfRel();
     }
 
-    @DeleteMapping("/{schoolId}")
+    @DeleteMapping("/schoolManager/{schoolId}")
     public ResponseEntity deleteSchool(@PathVariable("schoolId") Long schoolId) {
         schoolManagerService.delete(schoolId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);

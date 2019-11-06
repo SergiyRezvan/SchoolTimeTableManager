@@ -27,7 +27,8 @@ public class SchoolManagerService {
 
     public SchoolModelRS getSchool(Long schoolId) {
         Optional<SchoolEntity> schoolEntity = repository.findById(schoolId);
-        return schoolEntity.map(Converters::convertEntityToRs).orElseThrow();
+        return schoolEntity.map(Converters::convertEntityToRs)
+                .orElseThrow(() -> new NoSuchElementException("There is no such a school"));
     }
 
     public List<SchoolModelRS> getAllSchools() {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(schema = "classes")
+@Table(name = "classes")
 @FilterDef(name = "tenantFilter",
         parameters = @ParamDef(
                 name = "schoolId",

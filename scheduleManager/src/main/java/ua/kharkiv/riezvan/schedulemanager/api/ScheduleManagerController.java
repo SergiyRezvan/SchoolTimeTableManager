@@ -16,7 +16,7 @@ import java.util.List;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/scheduleManager")
+@RequestMapping("/{schoolName}/scheduleManager")
 public class ScheduleManagerController {
 
     @Autowired
