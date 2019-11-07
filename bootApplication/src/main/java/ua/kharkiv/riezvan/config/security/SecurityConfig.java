@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.DELETE, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
                     .antMatchers("/SchoolTimeTableManager/{\\w+}/scheduleManager").hasRole("MANAGER")
                     .antMatchers("/SchoolTimeTableManager/{\\w+}/activityManager").hasRole("MANAGER")
+                    .antMatchers("/SchoolTimeTableManager/{\\w+}/classManager").hasRole("MANAGER")
 
                 .and()
                     .logout().invalidateHttpSession(true);
