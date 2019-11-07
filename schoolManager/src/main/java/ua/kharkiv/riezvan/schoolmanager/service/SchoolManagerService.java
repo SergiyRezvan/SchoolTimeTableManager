@@ -42,7 +42,9 @@ public class SchoolManagerService {
     public SchoolModelRS update(SchoolModelRQ request, Long schoolId) {
         Optional<SchoolEntity> schoolEntityOpt = repository.findById(schoolId);
         schoolEntityOpt.orElseThrow(NoSuchElementException::new);
+        // TODO: Add partially update mapping
         SchoolEntity entityToUpdate = Converters.convertRequestToDbEntity(request);
+        entityToUpdate.setId(schoolId);
         return Converters.convertEntityToRs(repository.save(entityToUpdate));
     }
 
