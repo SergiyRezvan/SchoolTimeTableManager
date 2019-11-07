@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -30,27 +31,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new JWTAuthenticationFilter();
     }
 
+    @Bean
+    public AuthenticationEntryPoint unathorizedHandler() {
+        return new JwtAuthenticationEntryPoint();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf()
                 .disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(unathorizedHandler())
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    .antMatchers("/SchoolTimeTableManager/authenticate").permitAll()
+                    //.antMatchers("/SchoolTimeTableManager/authenticate").permitAll()
                     // Set up security for school endpoints
-                    .antMatchers("/SchoolTimeTableManager").permitAll()
-                    .antMatchers(HttpMethod.GET,"/SchoolTimeTableManager/{\\d+}").permitAll()
-                    .antMatchers(HttpMethod.POST, "/SchoolTimeTableManager/schoolManager").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.PATCH, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.DELETE, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
-                    .antMatchers("/SchoolTimeTableManager/{\\w+}/scheduleManager").hasRole("MANAGER")
-                    .antMatchers("/SchoolTimeTableManager/{\\w+}/activityManager").hasRole("MANAGER")
-                    .antMatchers("/SchoolTimeTableManager/{\\w+}/classManager").hasRole("MANAGER")
+                    .antMatchers("/SchoolTimeTableManager").authenticated()
+//                    .antMatchers(HttpMethod.GET,"/SchoolTimeTableManager/{\\d+}").permitAll()
+//                    .antMatchers(HttpMethod.POST, "/SchoolTimeTableManager/schoolManager").hasRole("ADMIN")
+//                    .antMatchers(HttpMethod.PATCH, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
+//                    .antMatchers(HttpMethod.DELETE, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
+//                    .antMatchers("/SchoolTimeTableManager/{\\w+}/scheduleManager").hasRole("MANAGER")
+//                    .antMatchers("/SchoolTimeTableManager/{\\w+}/activityManager").hasRole("MANAGER")
+//                    .antMatchers("/SchoolTimeTableManager/{\\w+}/classManager").hasRole("MANAGER")
 
                 .and()
                     .logout().invalidateHttpSession(true);
