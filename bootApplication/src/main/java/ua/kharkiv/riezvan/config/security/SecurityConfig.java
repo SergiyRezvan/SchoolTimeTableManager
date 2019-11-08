@@ -49,17 +49,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    //.antMatchers("/SchoolTimeTableManager/authenticate").permitAll()
+                    .antMatchers("/authenticate").permitAll()
                     // Set up security for school endpoints
-                    .antMatchers("/SchoolTimeTableManager").authenticated()
-//                    .antMatchers(HttpMethod.GET,"/SchoolTimeTableManager/{\\d+}").permitAll()
-//                    .antMatchers(HttpMethod.POST, "/SchoolTimeTableManager/schoolManager").hasRole("ADMIN")
-//                    .antMatchers(HttpMethod.PATCH, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
-//                    .antMatchers(HttpMethod.DELETE, "/SchoolTimeTableManager/schoolManager/{\\d+}").hasRole("ADMIN")
-//                    .antMatchers("/SchoolTimeTableManager/{\\w+}/scheduleManager").hasRole("MANAGER")
-//                    .antMatchers("/SchoolTimeTableManager/{\\w+}/activityManager").hasRole("MANAGER")
-//                    .antMatchers("/SchoolTimeTableManager/{\\w+}/classManager").hasRole("MANAGER")
-
+                    .antMatchers(HttpMethod.GET,"/{\\d+}").permitAll()
+                    .antMatchers(HttpMethod.GET,"/").permitAll()
+                    .antMatchers(HttpMethod.POST, "/schoolManager").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.PATCH, "/schoolManager/{\\d+}").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.DELETE, "/schoolManager/{\\d+}").hasRole("ADMIN")
+                    .antMatchers("/{\\w+}/scheduleManager").hasRole("MANAGER")
+                    .antMatchers("/{\\w+}/activityManager").hasRole("MANAGER")
+                    .antMatchers("/{\\w+}/classManager").hasRole("MANAGER")
+                    //.anyRequest().authenticated()
                 .and()
                     .logout().invalidateHttpSession(true);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

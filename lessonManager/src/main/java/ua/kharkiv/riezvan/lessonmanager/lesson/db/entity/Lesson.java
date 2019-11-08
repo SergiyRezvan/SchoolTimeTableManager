@@ -22,6 +22,7 @@ public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lessons_seq")
+    @SequenceGenerator(name = "lessons_seq", sequenceName = "lessons_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "school_id")

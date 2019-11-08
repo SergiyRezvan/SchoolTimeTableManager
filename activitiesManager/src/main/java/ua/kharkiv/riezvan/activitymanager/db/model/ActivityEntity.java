@@ -20,6 +20,7 @@ public class ActivityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activities_seq")
+    @SequenceGenerator(name = "activities_seq", sequenceName = "activities_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "school_id")

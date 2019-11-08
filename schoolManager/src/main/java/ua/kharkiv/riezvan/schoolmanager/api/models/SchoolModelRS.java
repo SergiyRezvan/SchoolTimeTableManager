@@ -3,12 +3,11 @@ package ua.kharkiv.riezvan.schoolmanager.api.models;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.springframework.hateoas.ResourceSupport;
 
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Builder
-public class SchoolModelRS extends ResourceSupport {
+public class SchoolModelRS {
 
     @EqualsAndHashCode.Include
     private Long schoolId;

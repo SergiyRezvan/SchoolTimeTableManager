@@ -20,10 +20,11 @@ public class JWTTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, String role) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         return Jwts.builder().setSubject(userPrincipal.getUsername())
                 .claim("id", userPrincipal.getId())
+                .claim("auth", role)
                 .claim("schoolId", userPrincipal.getSchoolId())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationInMs))

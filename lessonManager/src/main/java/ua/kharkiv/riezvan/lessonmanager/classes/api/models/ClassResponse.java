@@ -3,12 +3,11 @@ package ua.kharkiv.riezvan.lessonmanager.classes.api.models;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.hateoas.ResourceSupport;
 
 @Data
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class ClassResponse extends ResourceSupport {
+public class ClassResponse {
 
     @EqualsAndHashCode.Include
     private Long classId;

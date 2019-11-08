@@ -22,6 +22,7 @@ public class ScheduleEntity {
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = "schedules_seq")
+    @SequenceGenerator(name = "schedules_seq", sequenceName = "schedules_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "school_id")

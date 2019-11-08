@@ -21,6 +21,7 @@ public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "subjects_seq")
+    @SequenceGenerator(name = "subjects_seq", sequenceName = "subjects_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "school_id")

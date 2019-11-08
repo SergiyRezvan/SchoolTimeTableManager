@@ -3,14 +3,13 @@ package ua.kharkiv.riezvan.activitymanager.api.model;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.hateoas.ResourceSupport;
 
 import java.time.LocalTime;
 
 @Data
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class ActivityManagerRs extends ResourceSupport {
+public class ActivityManagerRs {
 
     @EqualsAndHashCode.Include
     private Long activityId;
