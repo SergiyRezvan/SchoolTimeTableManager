@@ -25,7 +25,7 @@ public class UserPrincipal implements UserDetails {
         this.email = teacher.getEmail();
         this.password = teacher.getPassword();
         this.schoolId = teacher.getSchoolId();
-        this.authorities = List.of(new SimpleGrantedAuthority("ROLE_" + teacher.getRole()));
+        this.authorities = List.of(new SimpleGrantedAuthority("ROLE_" + teacher.getRole().getName()));
     }
 
     @Override
