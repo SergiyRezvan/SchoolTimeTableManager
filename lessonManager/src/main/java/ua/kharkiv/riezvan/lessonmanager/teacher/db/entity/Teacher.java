@@ -54,6 +54,9 @@ public class Teacher {
     @JoinColumn(name = "teacher_id")
     private List<Subject> subjects;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
     public Teacher() {
     }
 
@@ -137,6 +140,14 @@ public class Teacher {
         this.subjects = subjects;
     }
 
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -163,6 +174,7 @@ public class Teacher {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", subjects=" + subjects +
+                ", isDeleted=" + isDeleted +
                 '}';
     }
 }

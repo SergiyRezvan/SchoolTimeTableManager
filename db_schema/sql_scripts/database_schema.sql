@@ -31,7 +31,7 @@ CREATE TABLE schedules (
 	school_id bigint NOT NULL,
 	actual_from date NULL,
 	actual_to date NULL,
-	is_exceptional bool NULL,
+	is_exceptional bool default FALSE,
 	CONSTRAINT schedules_pk PRIMARY KEY (id)
 );
 
@@ -65,6 +65,7 @@ CREATE TABLE teachers (
 	role_id bigint NOT NULL,
 	username varchar(20) NULL,
 	"password" varchar(100) NULL,
+	is_deleted bool default FALSE,
 	CONSTRAINT teachers_pk PRIMARY KEY (id),
 	CONSTRAINT teachers_fk FOREIGN KEY (role_id) REFERENCES teacher_roles(id)
 );

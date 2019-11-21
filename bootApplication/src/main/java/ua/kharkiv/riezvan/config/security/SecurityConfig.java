@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/{\\w+}/scheduleManager").hasRole("MANAGER")
                     .antMatchers("/{\\w+}/activityManager").hasRole("MANAGER")
                     .antMatchers("/{\\w+}/classManager").hasRole("MANAGER")
-                    //.anyRequest().authenticated()
+                    .anyRequest().authenticated()
                 .and()
                     .logout().invalidateHttpSession(true);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
