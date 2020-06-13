@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS classes;
 DROP TABLE if EXISTS activities;
 DROP TABLE IF EXISTS schedules;
 DROP TABLE IF EXISTS teachers;
-DROP TABLE IF EXISTS teachers_role;
+DROP TABLE IF EXISTS teacher_roles;
 DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools (

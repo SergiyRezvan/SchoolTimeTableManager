@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     // Set up security for school endpoints
                     .antMatchers(HttpMethod.GET,"/{\\d+}").permitAll()
                     .antMatchers(HttpMethod.GET,"/").permitAll()
+                    .antMatchers(HttpMethod.GET, "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                     .antMatchers(HttpMethod.POST, "/schoolManager").hasRole("ADMIN")
                     .antMatchers(HttpMethod.PATCH, "/schoolManager/{\\d+}").hasRole("ADMIN")
                     .antMatchers(HttpMethod.DELETE, "/schoolManager/{\\d+}").hasRole("ADMIN")
