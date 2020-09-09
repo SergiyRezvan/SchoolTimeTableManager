@@ -1,0 +1,42 @@
+version: '3.3'
+
+networks:
+  sttm-net:
+    driver: bridge
+
+services:
+  sttm-db:
+    image: postgres:12.0
+    networks:
+      - sttm-net
+    volumes:
+      - ./db_schema/sql_scripts/database_schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./db_schema/sql_scripts/data/init.sql:/docker-entrypoint-initdb.d/2-data.sql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB:       schooltimetabledb
+      POSTGRES_USER:     postgres
+      POSTGRES_PASSWORD: password
+
+#  sttm-app:
+#    build: configuration/build/docker
+#    depends_on:
+#      - sttm-db
+#    networks:
+#      - sttm-net
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - DB.URL=jdbc:postgresql://schooltimetabledb-db:5432
+#
+#  sttm-ui:
+#    build: ui
+#    depends_on:
+#      - sttm-app
+#    networks:
+#      - sttm-net
+#    ports:
+#      - "4200:4200"
+#    environment:
+#      SERVER_URL: 'http://your.ip:8080'
