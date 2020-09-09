@@ -15,6 +15,9 @@ public class SchoolEntity {
     @Column(name = "name", length = 100)
     private String name;
 
+    @Column(name = "rest_resource_name", length = 100)
+    private String restName;
+
     @Column(name = "description")
     private String description;
 
@@ -30,8 +33,8 @@ public class SchoolEntity {
     @Column(name = "director", length = 100)
     private String director;
 
-    @Column(name = "website", length = 150)
-    private String webSite;
+    @Column(name = "school_website", length = 150)
+    private String schoolWebsite;
 
     public SchoolEntity() {
     }
@@ -50,6 +53,14 @@ public class SchoolEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRestName() {
+        return restName;
+    }
+
+    public void setRestName(String restName) {
+        this.restName = restName;
     }
 
     public String getDescription() {
@@ -92,22 +103,22 @@ public class SchoolEntity {
         this.director = director;
     }
 
-    public String getWebSite() {
-        return webSite;
+    public String getSchoolWebsite() {
+        return schoolWebsite;
     }
 
-    public void setWebSite(String webSite) {
-        this.webSite = webSite;
+    public void setSchoolWebsite(String schoolWebsite) {
+        this.schoolWebsite = schoolWebsite;
     }
 
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SchoolEntity that = (SchoolEntity) o;
-        return id.equals(that.id);
+        return restName.equals(that.restName);
     }
 
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(restName);
     }
 }

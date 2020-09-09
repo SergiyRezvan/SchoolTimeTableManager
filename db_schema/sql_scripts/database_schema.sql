@@ -9,13 +9,14 @@ DROP TABLE IF EXISTS schools;
 
 CREATE TABLE schools (
 	id bigint NOT NULL,
-	"name" varchar(100) NULL,
+	"name" varchar(100) NOT NULL,
+	rest_resource_name varchar(100) NOT NULL UNIQUE,
 	description text NULL,
 	phone varchar(20) NULL,
 	address varchar(100) NULL,
-	email varchar(50) NULL,
+	email varchar(50) NULL UNIQUE,
 	director varchar(100) NULL,
-	website varchar(150) NULL,
+	school_website varchar(150) NULL,
 	CONSTRAINT schools_pk PRIMARY KEY (id)
 );
 

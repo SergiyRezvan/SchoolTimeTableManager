@@ -14,6 +14,9 @@ public class SchoolModelRS {
 
     private String name;
 
+    @EqualsAndHashCode.Include
+    private String restName;
+
     private String description;
 
     private String phone;

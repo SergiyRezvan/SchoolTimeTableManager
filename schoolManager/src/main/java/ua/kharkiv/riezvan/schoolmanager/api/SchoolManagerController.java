@@ -31,21 +31,21 @@ public class SchoolManagerController {
         return new ResponseEntity<>(allSchools, HttpStatus.OK);
     }
 
-    @GetMapping("/schoolManager/{schoolId}")
-    public HttpEntity<SchoolModelRS> getSchool(@PathVariable("schoolId") Long schoolId) {
-        SchoolModelRS schoolResponse = schoolManagerService.getSchool(schoolId);
+    @GetMapping("/schoolManager/{restName}")
+    public HttpEntity<SchoolModelRS> getSchool(@PathVariable("restName") String restName) {
+        SchoolModelRS schoolResponse = schoolManagerService.getSchool(restName);
         return null;
     }
 
-    @PatchMapping("/schoolManager/{schoolId}")
-    public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelRQ request, @PathVariable("schoolId") Long schoolId ) {
-        SchoolModelRS schoolResponse = schoolManagerService.update(request, schoolId);
+    @PatchMapping("/schoolManager/{restName}")
+    public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelRQ request, @PathVariable("restName") String restName ) {
+        SchoolModelRS schoolResponse = schoolManagerService.update(request, restName);
         return new ResponseEntity<>(schoolResponse, HttpStatus.OK);
     }
 
-    @DeleteMapping("/schoolManager/{schoolId}")
-    public ResponseEntity deleteSchool(@PathVariable("schoolId") Long schoolId) {
-        schoolManagerService.delete(schoolId);
+    @DeleteMapping("/schoolManager/{restName}")
+    public ResponseEntity deleteSchool(@PathVariable("restName") String restName) {
+        schoolManagerService.delete(restName);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 

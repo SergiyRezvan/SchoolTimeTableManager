@@ -13,8 +13,9 @@ public class Converters {
         schoolEntity.setDirector(request.getDirector());
         schoolEntity.setEmail(request.getEmail());
         schoolEntity.setName(request.getName());
+        schoolEntity.setRestName(request.getRestName());
         schoolEntity.setPhone(request.getPhone());
-        schoolEntity.setWebSite(request.getWebSite());
+        schoolEntity.setSchoolWebsite(request.getWebSite());
         return schoolEntity;
     }
 
@@ -26,8 +27,9 @@ public class Converters {
                 .director(schoolEntity.getDirector())
                 .email(schoolEntity.getEmail())
                 .name(schoolEntity.getName())
+                .restName(schoolEntity.getRestName())
                 .phone(schoolEntity.getPhone())
-                .webSite(schoolEntity.getWebSite())
+                .webSite(schoolEntity.getSchoolWebsite())
                 .build();
     }
 
