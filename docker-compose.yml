@@ -19,17 +19,19 @@ services:
       POSTGRES_USER:     postgres
       POSTGRES_PASSWORD: password
 
-#  sttm-app:
-#    build: configuration/build/docker
-#    depends_on:
-#      - sttm-db
-#    networks:
-#      - sttm-net
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - DB.URL=jdbc:postgresql://schooltimetabledb-db:5432
-#
+  sttm-app:
+    build: bootApplication/
+    depends_on:
+      - sttm-db
+    networks:
+      - sttm-net
+    ports:
+      - "8686:8686"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://sttm-db:5432/schooltimetabledb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+
 #  sttm-ui:
 #    build: ui
 #    depends_on:
