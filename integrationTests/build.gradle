@@ -23,7 +23,7 @@ sourceSets {
     }
 }
 
-integrationTests {
+test {
     useJUnitPlatform()
     systemProperty "karate.options", System.properties.getProperty("karate.options")
     systemProperty "karate.env", System.properties.getProperty("karate.env")

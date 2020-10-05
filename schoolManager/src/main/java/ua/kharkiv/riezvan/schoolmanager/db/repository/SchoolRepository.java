@@ -4,9 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ua.kharkiv.riezvan.schoolmanager.db.models.SchoolEntity;
 
-import java.util.Optional;
-
 @Repository
 public interface SchoolRepository extends CrudRepository<SchoolEntity, Long> {
-    Optional<SchoolEntity> findByRestName(String restName);
+    SchoolEntity findByRestName(String restName);
+
+    boolean existsByRestName(String restName);
 }

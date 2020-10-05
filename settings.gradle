@@ -10,5 +10,4 @@ include 'schoolManager'
 include 'scheduleManager'
 include 'activitiesManager'
 include 'lessonManager'
-include 'integrationTests'
 

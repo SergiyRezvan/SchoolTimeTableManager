@@ -6,4 +6,4 @@ In order to start application, execute next steps:
 * run docker-compose up -d
 * Open in browser http://localhost:4200/SchoolTimeTableManager
 * Check that backend is up - http://localhost:4200/SchoolTimeTableManager
-* Swagger UI documentation - http://localhost:8686/SchoolTimeTableManager/swagger-ui/index.html
+* Swagger UI documentation - http://localhost:8686/SchoolTimeTableManager/swagger-ui/index.html?configUrl=/SchoolTimeTableManager/v3/api-docs/swagger-config

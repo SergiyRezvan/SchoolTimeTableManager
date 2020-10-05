@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelPartialUpdateRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
 import ua.kharkiv.riezvan.schoolmanager.service.SchoolManagerService;
@@ -34,11 +35,11 @@ public class SchoolManagerController {
     @GetMapping("/schoolManager/{restName}")
     public HttpEntity<SchoolModelRS> getSchool(@PathVariable("restName") String restName) {
         SchoolModelRS schoolResponse = schoolManagerService.getSchool(restName);
-        return null;
+        return new ResponseEntity<>(schoolResponse, HttpStatus.OK);
     }
 
     @PatchMapping("/schoolManager/{restName}")
-    public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelRQ request, @PathVariable("restName") String restName ) {
+    public HttpEntity<SchoolModelRS> updateSchool(@RequestBody SchoolModelPartialUpdateRQ request, @PathVariable("restName") String restName ) {
         SchoolModelRS schoolResponse = schoolManagerService.update(request, restName);
         return new ResponseEntity<>(schoolResponse, HttpStatus.OK);
     }

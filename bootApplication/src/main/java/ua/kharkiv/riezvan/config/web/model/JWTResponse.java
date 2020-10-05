@@ -2,13 +2,13 @@ package ua.kharkiv.riezvan.config.web.model;
 
 public class JWTResponse {
 
-    private String jwtToken;
+    private String accessToken;
 
-    public JWTResponse(String jwtToken) {
-        this.jwtToken = jwtToken;
+    public JWTResponse(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    public String getJwtToken() {
-        return jwtToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 }

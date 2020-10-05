@@ -1,5 +1,6 @@
 package ua.kharkiv.riezvan.schoolmanager.converters;
 
+import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelPartialUpdateRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
 import ua.kharkiv.riezvan.schoolmanager.db.models.SchoolEntity;
@@ -31,6 +32,15 @@ public class Converters {
                 .phone(schoolEntity.getPhone())
                 .webSite(schoolEntity.getSchoolWebsite())
                 .build();
+    }
+
+    public static void copyUpdatedFields(SchoolEntity entity, SchoolModelPartialUpdateRQ schooldUpdateRq) {
+        entity.setAddress(schooldUpdateRq.getAddress());
+        entity.setDescription(schooldUpdateRq.getDescription());
+        entity.setDirector(schooldUpdateRq.getDirector());
+        entity.setEmail(schooldUpdateRq.getEmail());
+        entity.setPhone(schooldUpdateRq.getPhone());
+        entity.setSchoolWebsite(schooldUpdateRq.getWebSite());
     }
 
 }
