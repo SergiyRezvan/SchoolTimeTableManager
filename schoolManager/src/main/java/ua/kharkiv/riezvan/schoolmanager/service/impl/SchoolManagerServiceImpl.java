@@ -1,6 +1,7 @@
 package ua.kharkiv.riezvan.schoolmanager.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelPartialUpdateRQ;
@@ -14,14 +15,12 @@ import ua.kharkiv.riezvan.schoolmanager.service.SchoolManagerService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class SchoolManagerServiceImpl implements SchoolManagerService {
 
-    @Autowired
-    private SchoolRepository repository;
+    private final SchoolRepository repository;
 
     @Transactional
     public SchoolModelRS save(SchoolModelRQ schoolModelRQ) {

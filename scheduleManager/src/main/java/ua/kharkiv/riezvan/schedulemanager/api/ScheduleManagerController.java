@@ -1,6 +1,6 @@
 package ua.kharkiv.riezvan.schedulemanager.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +12,12 @@ import ua.kharkiv.riezvan.schedulemanager.service.ScheduleManagerService;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
-@RequestMapping("/{schoolName}/scheduleManager")
+@RequestMapping("/{schoolRestName}/scheduleManager")
 public class ScheduleManagerController {
 
-    @Autowired
-    private ScheduleManagerService scheduleManagerService;
+    private final ScheduleManagerService scheduleManagerService;
 
     @GetMapping
     public HttpEntity<List<ScheduleManagerRS>> getAllSchedules() {

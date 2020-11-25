@@ -1,6 +1,6 @@
 package ua.kharkiv.riezvan.activitymanager.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,13 +12,12 @@ import ua.kharkiv.riezvan.activitymanager.service.ActivityManagerService;
 import javax.validation.Valid;
 import java.util.List;
 
-
+@AllArgsConstructor
 @RestController
 @RequestMapping("/{schoolName}/activityManager")
 public class ActivityManagerController {
 
-    @Autowired
-    private ActivityManagerService activityManagerService;
+    private final ActivityManagerService activityManagerService;
 
     @GetMapping
     public HttpEntity<List<ActivityManagerRs>> getAll() {

@@ -1,8 +1,7 @@
 package ua.kharkiv.riezvan.config.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,17 +10,16 @@ import org.springframework.stereotype.Service;
 import ua.kharkiv.riezvan.lessonmanager.teacher.db.repository.TeacherRepository;
 
 @Service
+@AllArgsConstructor
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
-
-    @Autowired
-    private TeacherRepository teacherRepository;
+    private final TeacherRepository teacherRepository;
 
     @Cacheable("teacherUserNames")
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LOGGER.debug("Get teacher by username");
+        log.debug("Get teacher by username");
         var teacherOptional = teacherRepository.findTeacherByUserName(username);
         teacherOptional.orElseThrow(() ->
                 new UsernameNotFoundException("Invalid username " + username

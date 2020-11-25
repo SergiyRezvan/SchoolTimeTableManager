@@ -1,6 +1,6 @@
 package ua.kharkiv.riezvan.lessonmanager.classes.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +12,12 @@ import ua.kharkiv.riezvan.lessonmanager.classes.services.ClassService;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
-@RequestMapping("/{schoolName}/classManager")
+@RequestMapping("/{schoolRestName}/classManager")
 public class ClassManagerController {
 
-    @Autowired
-    private ClassService classService;
+    private final ClassService classService;
 
     @GetMapping("/")
     public HttpEntity<List<ClassResponse>> getAllClasses() {

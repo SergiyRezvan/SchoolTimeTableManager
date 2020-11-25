@@ -1,6 +1,6 @@
 package ua.kharkiv.riezvan.activitymanager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.kharkiv.riezvan.activitymanager.api.model.ActivityManagerRq;
 import ua.kharkiv.riezvan.activitymanager.api.model.ActivityManagerRs;
@@ -14,10 +14,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class ActivityManagerService {
 
-    @Autowired
-    private ActivityRepository activityRepository;
+    private final ActivityRepository activityRepository;
 
     public ActivityManagerRs saveActivity(ActivityManagerRq activityManagerRq) {
         var activityEntity = Converters.convertRqToDbEntity(activityManagerRq);

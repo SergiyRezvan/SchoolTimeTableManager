@@ -1,6 +1,6 @@
 package ua.kharkiv.riezvan.lessonmanager.classes.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.kharkiv.riezvan.lessonmanager.classes.api.models.ClassRequest;
 import ua.kharkiv.riezvan.lessonmanager.classes.api.models.ClassResponse;
@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class ClassService {
 
-    @Autowired
-    private ClassRepository classRepository;
+    private final ClassRepository classRepository;
 
     public List<ClassResponse> getAllClasses() {
         var classes = classRepository.findAll();

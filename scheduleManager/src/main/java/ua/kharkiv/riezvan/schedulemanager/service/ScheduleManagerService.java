@@ -1,6 +1,6 @@
 package ua.kharkiv.riezvan.schedulemanager.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.kharkiv.riezvan.schedulemanager.api.models.ScheduleManagerRQ;
 import ua.kharkiv.riezvan.schedulemanager.api.models.ScheduleManagerRS;
@@ -9,15 +9,15 @@ import ua.kharkiv.riezvan.schedulemanager.db.model.ScheduleEntity;
 import ua.kharkiv.riezvan.schedulemanager.db.repository.ScheduleRepository;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class ScheduleManagerService {
 
-    @Autowired
-    private ScheduleRepository scheduleRepository;
+    private final ScheduleRepository scheduleRepository;
 
     public ScheduleManagerRS saveSchedule(ScheduleManagerRQ scheduleManagerRQ) {
         ScheduleEntity savedEntity = scheduleRepository.save(Converters.convertRqToDbEntity(scheduleManagerRQ));
