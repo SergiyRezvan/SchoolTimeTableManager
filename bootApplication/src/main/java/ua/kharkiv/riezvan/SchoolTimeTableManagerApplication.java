@@ -8,8 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 public class SchoolTimeTableManagerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SchoolTimeTableManagerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SchoolTimeTableManagerApplication.class, args);
+    }
 
 }

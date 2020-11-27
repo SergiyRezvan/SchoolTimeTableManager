@@ -1,5 +1,6 @@
 package ua.kharkiv.riezvan.config.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,21 +49,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    .antMatchers("/authenticate").permitAll()
-                    // Set up security for school endpoints
-                    .antMatchers(HttpMethod.GET,"/{\\d+}").permitAll()
-                    .antMatchers(HttpMethod.GET,"/").permitAll()
-                    .antMatchers(HttpMethod.GET, "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
-                    .antMatchers(HttpMethod.POST, "/schoolManager").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.PATCH, "/schoolManager/{\\d+}").hasRole("ADMIN")
-                    .antMatchers(HttpMethod.DELETE, "/schoolManager/{\\d+}").hasRole("ADMIN")
-                    .antMatchers("/{\\w+}/scheduleManager").hasRole("MANAGER")
-                    .antMatchers("/{\\w+}/activityManager").hasRole("MANAGER")
-                    .antMatchers("/{\\w+}/classManager").hasRole("MANAGER")
-                    .anyRequest().authenticated()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers("/authenticate").permitAll()
+                // Set up security for school endpoints
+                .antMatchers(HttpMethod.GET, "/{\\d+}").permitAll()
+                .antMatchers(HttpMethod.GET, "/").permitAll()
+                .antMatchers(HttpMethod.GET, "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                .antMatchers(HttpMethod.POST, "/schoolManager").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PATCH, "/schoolManager/{\\d+}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/schoolManager/{\\d+}").hasRole("ADMIN")
+                .antMatchers("/{\\w+}/scheduleManager").hasRole("MANAGER")
+                .antMatchers("/{\\w+}/activityManager").hasRole("MANAGER")
+                .antMatchers("/{\\w+}/classManager").hasRole("MANAGER")
+                .anyRequest().authenticated()
                 .and()
-                    .logout().invalidateHttpSession(true);
+                .logout().invalidateHttpSession(true);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
@@ -84,7 +85,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
 
     @Bean
     public CorsFilter corsFilter() {

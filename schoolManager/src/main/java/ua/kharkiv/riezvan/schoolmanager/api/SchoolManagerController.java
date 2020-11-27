@@ -1,6 +1,5 @@
 package ua.kharkiv.riezvan.schoolmanager.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,15 +9,17 @@ import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRQ;
 import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
 import ua.kharkiv.riezvan.schoolmanager.service.SchoolManagerService;
 
+import lombok.AllArgsConstructor;
+
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping
 public class SchoolManagerController {
 
-    @Autowired
-    private SchoolManagerService schoolManagerService;
+    private final SchoolManagerService schoolManagerService;
 
     @PostMapping("/schoolManager")
     public HttpEntity<SchoolModelRS> createNewSchool(@RequestBody @Valid SchoolModelRQ request) {
