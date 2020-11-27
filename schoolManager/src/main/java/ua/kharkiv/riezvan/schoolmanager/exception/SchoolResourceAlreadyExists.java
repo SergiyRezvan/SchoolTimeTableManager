@@ -3,10 +3,10 @@ package ua.kharkiv.riezvan.schoolmanager.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class SchoolNotFoundException extends RuntimeException {
+@ResponseStatus(value = HttpStatus.CONFLICT)
+public class SchoolResourceAlreadyExists extends RuntimeException {
 
-    public SchoolNotFoundException(String message) {
+    public SchoolResourceAlreadyExists(String message) {
         super(message);
     }
 

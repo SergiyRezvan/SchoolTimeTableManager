@@ -6,7 +6,9 @@ import ua.kharkiv.riezvan.schoolmanager.db.models.SchoolEntity;
 
 @Repository
 public interface SchoolRepository extends CrudRepository<SchoolEntity, Long> {
-    SchoolEntity findByRestName(String restName);
 
+    SchoolEntity findByRestName(String restName);
     boolean existsByRestName(String restName);
+    boolean existsByName(String name);
+
 }

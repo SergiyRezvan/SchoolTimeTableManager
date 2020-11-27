@@ -10,12 +10,11 @@ import ua.kharkiv.riezvan.schoolmanager.api.models.SchoolModelRS;
 import ua.kharkiv.riezvan.schoolmanager.db.models.SchoolEntity;
 import ua.kharkiv.riezvan.schoolmanager.db.repository.SchoolRepository;
 import ua.kharkiv.riezvan.schoolmanager.exception.SchoolNotFoundException;
+import ua.kharkiv.riezvan.schoolmanager.exception.SchoolResourceAlreadyExists;
 import ua.kharkiv.riezvan.schoolmanager.service.SchoolManagerService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class SchoolManagerServiceImpl implements SchoolManagerService {
@@ -26,6 +25,10 @@ public class SchoolManagerServiceImpl implements SchoolManagerService {
     @Transactional
     public SchoolModelRS save(SchoolModelRQ schoolModelRQ) {
         SchoolEntity schoolEntity = Converters.convertRequestToDbEntity(schoolModelRQ);
+        if (repository.existsByRestName(schoolEntity.getRestName())
+                || repository.existsByName(schoolEntity.getName())) {
+            throw new SchoolResourceAlreadyExists("School with specified name already exists");
+        }
         SchoolEntity savedEntity = repository.save(schoolEntity);
         return Converters.convertEntityToRs(savedEntity);
     }
